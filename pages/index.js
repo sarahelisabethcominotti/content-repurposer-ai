@@ -23,7 +23,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
         <h1 className="text-2xl font-semibold text-center mb-2">
-          🪄 Content Repurposer AI
+        ♻️ Content Repurposer AI ♻️
         </h1>
         <p className="text-center text-gray-500 mb-6 text-sm">
           Turn long-form content into short-form gold for Twitter, LinkedIn, and more.
