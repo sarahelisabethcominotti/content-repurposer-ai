@@ -1,19 +1,34 @@
 import { useState } from "react";
 
-export default function YouTubeTab({ setInput, platform }) {
+export default function YouTubeTab({ setOutput, platform, setPlatform }) {
   const [url, setUrl] = useState("");
   const [loadingYoutube, setLoadingYoutube] = useState(false);
 
   const handleFetch = async () => {
     setLoadingYoutube(true);
-    const res = await fetch("/api/transcript", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ videoUrl: url }),
-    });
+    const transcriptRes = await fetch("/api/transcript", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ videoUrl: url }),
+      });
 
-    const data = await res.json();
-    setInput(data.transcript || data.error);
+      const transcriptData = await transcriptRes.json();
+      const transcript = transcriptData.transcript;
+
+      if (!transcript) {
+        setOutput("Could not retrieve transcript.");
+        loadingYoutube(false);
+        return;
+      }
+
+      const aiRes = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input: transcript, platform }),
+      });
+
+      const aiData = await aiRes.json();
+      setOutput(aiData.result);
     setLoadingYoutube(false);
   };
 
@@ -29,6 +44,20 @@ export default function YouTubeTab({ setInput, platform }) {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
+
+      <label className="block mt-4 mb-2 text-sm font-medium text-gray-700">
+        Choose Platform
+      </label>
+      <select
+          className="w-full p-3 border border-gray-300 rounded-xl bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={platform}
+          onChange={(e) => setPlatform(e.target.value)}
+        >
+          <option>Twitter Thread</option>
+          <option>LinkedIn Post</option>
+          <option>Instagram Caption</option>
+        </select>
+
       <button
         onClick={handleFetch}
         disabled={loadingYoutube || !url.trim()}

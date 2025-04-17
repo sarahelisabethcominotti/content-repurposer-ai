@@ -32,7 +32,7 @@ export default function Home() {
           Turn long-form content into short-form gold for Twitter, LinkedIn, and more.
         </p>
 
-        <YouTubeTab setInput={setInput} platform={platform} />
+        <YouTubeTab setOutput={setOutput} platform={platform} setPlatform={setPlatform} />
         <TranscriptTab input={input} setInput={setInput} platform={platform} setPlatform={setPlatform} generateContent={generateContent} loading={loading} />
         <Output output={output} />
       </div>
