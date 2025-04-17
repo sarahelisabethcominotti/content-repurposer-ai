@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../app/globals.css";
 import TranscriptTab from "../public/components/TranscriptTab";
-import YouTubeTab from "../public/components/YoutubeTab";
+import YouTubeTab from "@/public/components/YoutubeTab";
 import Output from "../public/components/Output";
 
 export default function Home() {
