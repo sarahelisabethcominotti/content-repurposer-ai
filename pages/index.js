@@ -6,6 +6,7 @@ export default function Home() {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
 
+ 
   const generateContent = async () => {
     setLoading(true);
     const res = await fetch("/api/generate", {
@@ -18,9 +19,44 @@ export default function Home() {
     setLoading(false);
   };
 
+ //youtube link
+ const [url, setUrl] = useState('');
+ const [loadingYoutube, setLoadingYoutube] = useState(false)
+
+  const handleFetch = async () => {
+    setLoadingYoutube(true);
+    const res = await fetch('/api/transcript', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ videoUrl: url }),
+    });
+
+    const data = await res.json();
+    setInput(data.transcript || data.error);
+    setLoadingYoutube(false);
+  };
+  //end youtube link
+
   return (
     
     <div className="min-h-screen bg-gray-100 py-8 px-4">
+      <div className="p-4 max-w-md mx-auto">
+      <input
+        type="text"
+        placeholder="Paste YouTube link"
+        className="w-full p-2 border rounded mb-2"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
+      <button
+        onClick={handleFetch}
+        disabled={loadingYoutube || !url.trim()}
+        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition-all disabled:opacity-50"
+      >
+        {loadingYoutube ? 'Fetching...' : 'Get Transcript'}
+      </button>
+
+    </div>
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
         <h1 className="text-2xl font-semibold text-center mb-2">
         ♻️ Content Repurposer AI ♻️
@@ -60,6 +96,8 @@ export default function Home() {
         >
           {loading ? "Generating..." : "Generate Content"}
         </button>
+
+
 
         {output && (
           <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-4">
