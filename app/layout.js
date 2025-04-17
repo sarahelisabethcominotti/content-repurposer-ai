@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
-        <Analytics debug={true} mode={production}/>
+        <Analytics debug={true}/>
       </body>
     </html>
   );
