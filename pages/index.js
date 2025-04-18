@@ -1,89 +1,39 @@
-import { useState } from "react";
+import Link from 'next/link';
 import "../app/globals.css";
-import TranscriptTab from "../public/components/TranscriptTab";
-import YouTubeTab from "../public/components/YouTubeTab";
-import Output from "../public/components/Output";
-import { useRef } from "react";
-import LoginButton from "../public/components/LoginButton";
-import { SessionProvider } from "next-auth/react";
-
-export default function Home() {
-
-  const outputRef = useRef(null);
-
-  const [input, setInput] = useState("");
-  const [platform, setPlatform] = useState("Twitter Thread");
-  const [output, setOutput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("transcript");
 
 
-  const generateContent = async () => {
-    setLoading(true);
-    const res = await fetch("/api/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input, platform }),
-    });
-    const data = await res.json();
-    setOutput(data.result);
-    setLoading(false);
-
-    setTimeout(() => {
-      outputRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
-
+export default function LandingPage() {
+    
   return (
-    <SessionProvider>
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
-      <LoginButton/>
+    
+    <div className="min-h-screen bg-white flex flex-col">
+      <header className="w-full py-6 px-8 flex justify-between items-center shadow-sm">
+        <h1 className="text-xl font-bold text-blue-600">Content Repurposer AI</h1>
+        <Link href="/api/auth/signin">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-all">
+            Sign In
+          </button>
+        </Link>
+      </header>
 
-        <h1 className="text-2xl font-semibold text-center mb-2">
-          ♻️ Content Repurposer AI ♻️
-        </h1>
-        <p className="text-center text-gray-500 mb-6 text-sm">
-          Turn long-form content into short-form gold for Twitter, LinkedIn, and more.
+      <main className="flex flex-col flex-1 items-center justify-center text-center px-6">
+        <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 leading-tight">
+        ♻️ Turn Long-Form Content into Short-Form Gold ♻️
+        </h2>
+        <p className="text-gray-600 text-lg mb-8 max-w-xl">
+          Effortlessly transform YouTube videos or blog posts into content for Twitter, LinkedIn, and Instagram with AI.
         </p>
-        <div className="flex space-x-2 border-b border-gray-200 mb-4">
-        <button
-    className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
-      activeTab === "transcript"
-      ? "bg-white border-x border-t border-blue-500 text-blue-600"
-      : "bg-gray-100 text-gray-500 hover:text-blue-600"
-            }`}
-            onClick={() => setActiveTab("transcript")}
-          >
-            Transcript
+        <Link href="/app">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg transition-all">
+            Try It Now
           </button>
-          <button
-    className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
-      activeTab === "youtube"
-      ? "bg-white border-x border-t border-blue-500 text-blue-600"
-      : "bg-gray-100 text-gray-500 hover:text-blue-600"
-            }`}
-            onClick={() => setActiveTab("youtube")}
-          >
-            YouTube Link
-          </button>
-          
-        </div>
-        <div className="bg-white border border-gray-200 border-t-0 rounded-b-xl p-4">
-          {activeTab === "transcript" ? (
-                    <TranscriptTab input={input} setInput={setInput} platform={platform} setPlatform={setPlatform} generateContent={generateContent} loading={loading} />
+        </Link>
+      </main>
 
-          ) : (
-            <YouTubeTab setOutput={setOutput} platform={platform} setPlatform={setPlatform} />
 
-          )}
-        </div>
-        <div ref={outputRef}>
-        <Output output={output} />
-
-        </div>
-      </div>
+      <footer className="py-4 text-center text-gray-400 text-sm">
+        © {new Date().getFullYear()} Sarah Elisabeth Cominotti. All rights reserved.
+      </footer>
     </div>
-    </SessionProvider>
   );
 }
