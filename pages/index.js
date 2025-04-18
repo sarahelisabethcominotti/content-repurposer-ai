@@ -4,8 +4,11 @@ import TranscriptTab from "../public/components/TranscriptTab";
 import YouTubeTab from "../public/components/YouTubeTab";
 import Output from "../public/components/Output";
 import { useRef } from "react";
+import LoginButton from "../public/components/LoginButton";
+import { SessionProvider } from "next-auth/react";
 
 export default function Home() {
+
   const outputRef = useRef(null);
 
   const [input, setInput] = useState("");
@@ -32,7 +35,9 @@ export default function Home() {
   };
 
   return (
+    <SessionProvider>
     <div className="min-h-screen bg-gray-100 py-8 px-4">
+       <LoginButton/>
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
         <h1 className="text-2xl font-semibold text-center mb-2">
           ♻️ Content Repurposer AI ♻️
@@ -78,5 +83,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </SessionProvider>
   );
 }

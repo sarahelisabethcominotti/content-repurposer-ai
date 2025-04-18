@@ -19,8 +19,7 @@ export const metadata = {
 };
 
 
-
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
       <head>
@@ -28,8 +27,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
-        <Analytics debug={true}/>
+        {/* <Analytics debug={true} /> */}
       </body>
     </html>
   );
 }
+
