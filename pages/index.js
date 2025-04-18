@@ -37,8 +37,9 @@ export default function Home() {
   return (
     <SessionProvider>
     <div className="min-h-screen bg-gray-100 py-8 px-4">
-       <LoginButton/>
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
+      <LoginButton/>
+
         <h1 className="text-2xl font-semibold text-center mb-2">
           ♻️ Content Repurposer AI ♻️
         </h1>
