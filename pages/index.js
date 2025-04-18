@@ -3,13 +3,17 @@ import "../app/globals.css";
 import TranscriptTab from "../public/components/TranscriptTab";
 import YouTubeTab from "../public/components/YouTubeTab";
 import Output from "../public/components/Output";
+import { useRef } from "react";
 
 export default function Home() {
+  const outputRef = useRef(null);
+
   const [input, setInput] = useState("");
   const [platform, setPlatform] = useState("Twitter Thread");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("transcript");
+
 
   const generateContent = async () => {
     setLoading(true);
@@ -21,6 +25,10 @@ export default function Home() {
     const data = await res.json();
     setOutput(data.result);
     setLoading(false);
+
+    setTimeout(() => {
+      outputRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   return (
@@ -32,22 +40,22 @@ export default function Home() {
         <p className="text-center text-gray-500 mb-6 text-sm">
           Turn long-form content into short-form gold for Twitter, LinkedIn, and more.
         </p>
-        <div className="flex mb-4">
+        <div className="flex space-x-2 border-b border-gray-200 mb-4">
         <button
-            className={`flex-1 px-4 py-2 rounded-t-lg font-medium text-sm transition-all ${
-              activeTab === "transcript"
-                ? "bg-white text-blue-600 border-t-2 border-blue-600"
-                : "bg-gray-100 text-gray-500 hover:text-blue-600"
+    className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
+      activeTab === "transcript"
+      ? "bg-white border-x border-t border-blue-500 text-blue-600"
+      : "bg-gray-100 text-gray-500 hover:text-blue-600"
             }`}
             onClick={() => setActiveTab("transcript")}
           >
             Transcript
           </button>
           <button
-            className={`flex-1 px-4 py-2 rounded-t-lg font-medium text-sm transition-all ${
-              activeTab === "youtube"
-                ? "bg-white text-blue-600 border-t-2 border-blue-600"
-                : "bg-gray-100 text-gray-500 hover:text-blue-600"
+    className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
+      activeTab === "youtube"
+      ? "bg-white border-x border-t border-blue-500 text-blue-600"
+      : "bg-gray-100 text-gray-500 hover:text-blue-600"
             }`}
             onClick={() => setActiveTab("youtube")}
           >
@@ -64,7 +72,10 @@ export default function Home() {
 
           )}
         </div>
+        <div ref={outputRef}>
         <Output output={output} />
+
+        </div>
       </div>
     </div>
   );
