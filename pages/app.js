@@ -7,6 +7,7 @@ import { useRef } from "react";
 import LoginButton from "../public/components/LoginButton";
 import { SessionProvider } from "next-auth/react";
 import { Analytics } from '@vercel/analytics/next';
+import HistoryButton from "@/public/components/HistoryButton";
 
 
 export default function Home() {
@@ -45,6 +46,7 @@ export default function Home() {
 
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
+      <HistoryButton/>
       <LoginButton/>
 
         <h1 className="text-2xl font-semibold text-center mb-2">
@@ -53,7 +55,7 @@ export default function Home() {
         <p className="text-center text-gray-500 mb-6 text-sm">
           Turn long-form content into short-form gold for Twitter, LinkedIn, and more.
         </p>
-        <div className="flex space-x-2 border-b border-gray-200 mb-4">
+        <div className="flex space-x-2 border-gray-200">
         <button
     className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
       activeTab === "transcript"
@@ -87,7 +89,7 @@ export default function Home() {
           )}
         </div>
         <div ref={outputRef}>
-        <Output output={output} />
+        <Output output={output} input={input} platform={platform} />
 
         </div>
 

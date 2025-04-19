@@ -1,4 +1,20 @@
-export default function Output({ output }) {
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+
+export default function Output({ output, input, platform }) {
+    const { data: session } = useSession();
+    const [saved, setSaved] = useState(false);
+
+    const handleSave = async () => {
+        const res = await fetch("/api/saveGeneration", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ input, output, platform }),
+        });
+    
+        if (res.ok) setSaved(true);
+      };
+
     if (!output) return null;
   
     return (
@@ -11,6 +27,15 @@ export default function Output({ output }) {
         >
           Copy to Clipboard
         </button>
+        {session && (
+        <button
+          onClick={handleSave}
+          className="mt-4 w-full bg-orange-400 text-white py-2 rounded-lg hover:bg-orange-600 transition-all"
+          disabled={saved}
+        >
+          {saved ? "Saved ✅" : "Save to History"}
+        </button>
+      )}
       </div>
     );
   }
