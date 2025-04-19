@@ -2,14 +2,21 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { createClient } from "@supabase/supabase-js";
 import "../app/globals.css";
+import Navigation from "@/public/components/Navigation";
+import { SessionProvider } from "next-auth/react";
 
 // import { supabase } from "../utils/supabaseClient";
 
 export default function History({ generations }) {
   
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-semibold mb-4">📜 Your History</h1>
+    <SessionProvider>
+    <div className="min-h-screen bg-gray-100 py-8 px-4">
+      <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
+      {/* <HistoryButton/>
+      <LoginButton/> */}
+      <Navigation/>
+      <h1 className="text-2xl font-semibold text-center mb-4">📜 Your History</h1>
       {generations.length === 0 ? (
         <p className="text-gray-500">No generations saved yet.</p>
       ) : (
@@ -29,6 +36,8 @@ export default function History({ generations }) {
         ))
       )}
     </div>
+    </div>
+    </SessionProvider>
   );
 }
 

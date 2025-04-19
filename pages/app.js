@@ -8,6 +8,7 @@ import LoginButton from "../public/components/LoginButton";
 import { SessionProvider } from "next-auth/react";
 import { Analytics } from '@vercel/analytics/next';
 import HistoryButton from "@/public/components/HistoryButton";
+import Navigation from "@/public/components/Navigation";
 
 
 export default function Home() {
@@ -41,13 +42,14 @@ export default function Home() {
     <><Analytics debug={true} />
 
     <SessionProvider>
-      <script async src="https://tally.so/widgets/embed.js"></script>
+      {/* <script async src="https://tally.so/widgets/embed.js"></script> */}
 
 
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
-      <HistoryButton/>
-      <LoginButton/>
+      {/* <HistoryButton/>
+      <LoginButton/> */}
+      <Navigation/>
 
         <h1 className="text-2xl font-semibold text-center mb-2">
           ♻️ Content Repurposer AI ♻️
