@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import "../app/globals.css";
+import { signIn } from "next-auth/react"
+
 
 
 export default function LandingPage() {
@@ -23,11 +25,15 @@ export default function LandingPage() {
         <p className="text-gray-600 text-lg mb-8 max-w-xl">
           Effortlessly transform YouTube videos or blog posts into content for Twitter, LinkedIn, and Instagram with AI.
         </p>
-        <Link href="/app" target='_blank'>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg transition-all">
+        {/* <Link href="/app" target='_blank'> */}
+          <button onClick={() =>
+                  signIn('Credentials', {
+                    callbackUrl: '/app'
+                  }
+                  )} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg transition-all">
             Try It Now
           </button>
-        </Link>
+        {/* </Link> */}
         <Link href="https://tally.so/r/3l4Gav" target='_blank'>
           <button className="bg-gray-500 hover:bg-gray-700 text-white px-6 py-3 rounded-full text-lg transition-all mt-8">
             Share your Feedback
