@@ -43,8 +43,8 @@ function Generator() {
   if (!session) {
   return (
     <>
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
+    <div className="min-h-screen bg-gray-100 flex items-center [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,green_100%)] py-8 px-4">
+    <div className="max-w-xl mx-auto  bg-white p-6 rounded-2xl shadow-md">
       {/* <HistoryButton/>
       <LoginButton/> */}
 
@@ -60,7 +60,7 @@ function Generator() {
   else {
     return (
       <>
-       <div className="min-h-screen bg-gray-100 py-8 px-4">
+       <div className="min-h-screen bg-gray-100 flex items-center [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,green_100%)] py-8 px-4">
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
       {/* <HistoryButton/>
       <LoginButton/> */}
@@ -76,8 +76,8 @@ function Generator() {
         <button
     className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
       activeTab === "transcript"
-      ? "bg-white border-x border-t border-blue-500 text-blue-600"
-      : "bg-gray-100 text-gray-500 hover:text-blue-600"
+      ? "bg-white border-x border-t border-green-500 text-green-600"
+      : "bg-gray-100 text-gray-500 hover:text-green-600"
             }`}
             onClick={() => setActiveTab("transcript")}
           >
@@ -86,8 +86,8 @@ function Generator() {
           <button
     className={`flex-1 py-2 text-sm font-medium text-center rounded-t-md transition-colors duration-200 ${
       activeTab === "youtube"
-      ? "bg-white border-x border-t border-blue-500 text-blue-600"
-      : "bg-gray-100 text-gray-500 hover:text-blue-600"
+      ? "bg-white border-x border-t border-green-500 text-green-600"
+      : "bg-gray-100 text-gray-500 hover:text-green-600"
             }`}
             onClick={() => setActiveTab("youtube")}
           >

@@ -26,7 +26,7 @@ export default function LoginButton() {
 
     <button
           onClick={() => signIn()}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition-all"
+          className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-lg transition-all"
         >
           Sign in
         </button>

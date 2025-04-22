@@ -8,11 +8,11 @@ export default function LandingPage() {
     
   return (
     
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,green_100%)]">
       <header className="w-full py-6 px-8 flex justify-between items-center shadow-sm">
-        <h1 className="text-xl font-bold text-blue-600">Content Repurposer AI</h1>
+        <h1 className="text-xl font-bold text-green-600">Content Repurposer AI</h1>
         {/* <Link href="/api/auth/signin">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-all">
+          <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-all">
             Sign In
           </button>
         </Link> */}
@@ -30,7 +30,7 @@ export default function LandingPage() {
                   signIn('Credentials', {
                     callbackUrl: '/app'
                   }
-                  )} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg transition-all">
+                  )} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full text-lg transition-all">
             Try It Now
           </button>
         {/* </Link> */}
@@ -41,9 +41,12 @@ export default function LandingPage() {
         </Link>
         </main>
 
-      <footer className="py-4 text-center text-gray-400 text-sm">
+      <footer className="py-4 text-center text-sm">
         © {new Date().getFullYear()} Sarah Elisabeth Cominotti. All rights reserved.
       </footer>
     </div>
   );
 }
+
+
+
