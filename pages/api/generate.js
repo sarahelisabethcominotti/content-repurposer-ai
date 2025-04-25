@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
     const { input, platform } = req.body;
   
-    const prompt = `You are a social media expert. Repurpose the following content into a ${platform} with a strong hook, engaging structure, and a CTA.
+    const prompt = `You are a social media expert. Repurpose the following content into a ${platform} with a strong hook and engaging structure.
   
   Content:
   ${input}

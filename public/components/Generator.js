@@ -101,7 +101,7 @@ function Generator() {
 
           ) : (
             
-            <YouTubeTab setOutput={setOutput} platform={platform} setPlatform={setPlatform} />
+            <YouTubeTab input={input} setInput={setInput} setOutput={setOutput} platform={platform} setPlatform={setPlatform} />
 
           )}
         </div>

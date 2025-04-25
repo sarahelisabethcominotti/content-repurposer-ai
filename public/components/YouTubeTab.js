@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 
-export default function YouTubeTab({ setOutput, platform, setPlatform }) {
-  const [url, setUrl] = useState("");
+export default function YouTubeTab({ input, setInput, setOutput, platform, setPlatform }) {
   const [loadingYoutube, setLoadingYoutube] = useState(false);
 
   const handleFetch = async () => {
@@ -11,15 +10,15 @@ export default function YouTubeTab({ setOutput, platform, setPlatform }) {
     const transcriptRes = await fetch("/api/transcript", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ videoUrl: url }),
+        body: JSON.stringify({ videoUrl: input }),
       });
 
       const transcriptData = await transcriptRes.json();
       const transcript = transcriptData.transcript;
 
       if (!transcript) {
-        setOutput("Could not retrieve transcript.");
-        loadingYoutube(false);
+        setOutput("Could not retrieve transcript, please ensure the YouTube video has transcripts enabled.");
+        setLoadingYoutube(false);
         return;
       }
 
@@ -44,8 +43,8 @@ export default function YouTubeTab({ setOutput, platform, setPlatform }) {
       type="text"
       placeholder="Paste YouTube link here..."
       className="w-full p-3 border border-gray-300 rounded-xl resize-none text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-      value={url}
-      onChange={(e) => setUrl(e.target.value)}
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
     />
 
     <label className="block mt-4 mb-2 text-sm font-medium text-gray-700">
@@ -63,7 +62,7 @@ export default function YouTubeTab({ setOutput, platform, setPlatform }) {
 
     <button
       onClick={handleFetch}
-      disabled={loadingYoutube || !url.trim()}
+      disabled={loadingYoutube || !input.trim()}
       className="mt-4 w-full bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition-all disabled:opacity-50"
     >
       {loadingYoutube ? "Generating..." : "Generate from YouTube"}
