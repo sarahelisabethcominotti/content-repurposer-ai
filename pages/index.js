@@ -5,7 +5,16 @@ import { signIn } from "next-auth/react"
 
 
 export default function LandingPage() {
-    
+  async function handleSignIn() {
+    const result = await signIn('credentials', {
+      callbackUrl: '/app',
+      redirect: true, 
+    });
+  
+    if (!result?.ok) {
+      console.error('Sign in error', result);
+    }
+  }
   return (
     
     <div className="min-h-screen bg-white flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,green_100%)]">
@@ -26,11 +35,7 @@ export default function LandingPage() {
           Effortlessly transform YouTube videos or blog posts into content for Twitter, LinkedIn, and Instagram with AI.
         </p>
         {/* <Link href="/app" target='_blank'> */}
-          <button onClick={() =>
-                  signIn('Credentials', {
-                    callbackUrl: '/app'
-                  }
-                  )} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full text-lg transition-all">
+          <button onClick={handleSignIn} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full text-lg transition-all">
             Try It Now
           </button>
         {/* </Link> */}
