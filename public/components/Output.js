@@ -33,7 +33,7 @@ export default function Output({ output, input, platform }) {
         <pre className="whitespace-pre-wrap text-sm text-gray-800">{output}</pre>
         <button
           onClick={handleCopy}
-          className="mt-4 w-full bg-green-300 text-white py-2 rounded-lg hover:bg-black transition-all"
+          className="mt-4 w-full bg-gray-300 text-black py-2 font-medium rounded-lg hover:text-white hover:bg-black transition-all"
           disabled={copy}
         >
           {!copy ? "Copy to Clipboard" : "Copied"}
@@ -41,7 +41,7 @@ export default function Output({ output, input, platform }) {
         {session && (
         <button
           onClick={handleSave}
-          className="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-800 transition-all"
+          className="mt-4 w-full hover:bg-black hover:text-white font-medium py-2 rounded-lg bg-green-300 text-black transition-all"
           disabled={saved}
         >
           {saved ? "Saved" : loadingSave ? "Saving..." : "Save to History"}
