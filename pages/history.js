@@ -67,7 +67,7 @@ export default function History({ generations }) {
 
     
     <SessionProvider>
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
+    <div className="min-h-screen bg-gray-100 flex items-center [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7AFFAD_100%)] py-8 px-4">
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
       {/* <HistoryButton/>
       <LoginButton/> */}

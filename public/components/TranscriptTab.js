@@ -5,7 +5,7 @@ export default function TranscriptTab({ input, setInput, platform, setPlatform, 
           Paste Your Content
         </label>
         <textarea
-          className="w-full p-3 border border-gray-300 rounded-xl resize-none text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full p-3 border border-gray-300 rounded-xl resize-none text-sm focus:outline-none focus:ring-2 focus:ring-green-300"
           rows={6}
           placeholder="Paste blog post or transcript here..."
           value={input}
@@ -16,7 +16,7 @@ export default function TranscriptTab({ input, setInput, platform, setPlatform, 
           Choose Platform
         </label>
         <select
-          className="w-full p-3 border border-gray-300 rounded-xl bg-white text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full p-3 border border-gray-300 rounded-xl bg-white text-sm focus:outline-none focus:ring-2 focus:ring-green-300"
           value={platform}
           onChange={(e) => setPlatform(e.target.value)}
         >
@@ -28,7 +28,7 @@ export default function TranscriptTab({ input, setInput, platform, setPlatform, 
         <button
           onClick={generateContent}
           disabled={loading || !input.trim()}
-          className="mt-6 w-full bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition-all disabled:opacity-50"
+          className="mt-6 w-full bg-green-300 text-white py-3 rounded-xl font-medium hover:bg-black transition-all disabled:opacity-50"
         >
           {loading ? "Generating..." : "Generate Content"}
         </button>

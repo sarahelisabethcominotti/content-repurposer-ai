@@ -42,7 +42,7 @@ export default function YouTubeTab({ input, setInput, setOutput, platform, setPl
     <input
       type="text"
       placeholder="Paste YouTube link here..."
-      className="w-full p-3 border border-gray-300 rounded-xl resize-none text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+      className="w-full p-3 border border-gray-300 rounded-xl resize-none text-sm focus:outline-none focus:ring-2 focus:ring-green-300"
       value={input}
       onChange={(e) => setInput(e.target.value)}
     />
@@ -51,7 +51,7 @@ export default function YouTubeTab({ input, setInput, setOutput, platform, setPl
       Choose Platform
     </label>
     <select
-        className="w-full p-3 border border-gray-300 rounded-xl bg-white text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        className="w-full p-3 border border-gray-300 rounded-xl bg-white text-sm focus:outline-none focus:ring-2 focus:ring-green-300"
         value={platform}
         onChange={(e) => setPlatform(e.target.value)}
       >
@@ -63,7 +63,7 @@ export default function YouTubeTab({ input, setInput, setOutput, platform, setPl
     <button
       onClick={handleFetch}
       disabled={loadingYoutube || !input.trim()}
-      className="mt-4 w-full bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition-all disabled:opacity-50"
+      className="mt-4 w-full bg-green-300 text-white py-3 rounded-xl font-medium hover:bg-black transition-all disabled:opacity-50"
     >
       {loadingYoutube ? "Generating..." : "Generate from YouTube"}
     </button>

@@ -13,7 +13,7 @@ export default function LoginButton() {
         {/* <span className="text-sm text-gray-700">Signed in as <strong>{session.user.email}</strong></span> */}
         <button
           onClick={() => signOut({callbackUrl: "/", redirect:true })}
-          className="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg transition-all"
+          className="bg-red-400 hover:bg-black text-black hover:text-white text-sm px-4 py-2 rounded-lg transition-all"
         >
           Sign out
         </button>
@@ -26,7 +26,7 @@ export default function LoginButton() {
 
     <button
           onClick={() => signIn()}
-          className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-lg transition-all"
+          className="bg-green-300 hover:bg-black text-white text-sm px-4 py-2 rounded-lg transition-all"
         >
           Sign in
         </button>

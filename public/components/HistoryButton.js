@@ -9,7 +9,7 @@ export default function HistoryButton() {
       return (
         // if we are on /history then it becomes home
           <a href="/app"           
-          className="bg-purple-600 hover:bg-purple-800 text-white text-sm px-4 py-2 rounded-lg transition-all"
+          className="bg-green-300 hover:bg-black hover:text-white text-black text-sm px-4 py-2 rounded-lg transition-all"
           >
           Home
         </a>
@@ -19,7 +19,7 @@ export default function HistoryButton() {
       return (
         // if we are on /history then it becomes home
           <a href="/history"           
-          className="bg-purple-600 hover:bg-purple-800 text-white text-sm px-4 py-2 rounded-lg transition-all"
+          className="bg-green-300 hover:bg-black hover:text-white text-black text-sm px-4 py-2 rounded-lg transition-all"
           >
           View History
         </a>

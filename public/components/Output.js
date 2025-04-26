@@ -33,7 +33,7 @@ export default function Output({ output, input, platform }) {
         <pre className="whitespace-pre-wrap text-sm text-gray-800">{output}</pre>
         <button
           onClick={handleCopy}
-          className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-all"
+          className="mt-4 w-full bg-green-300 text-white py-2 rounded-lg hover:bg-black transition-all"
           disabled={copy}
         >
           {!copy ? "Copy to Clipboard" : "Copied"}
