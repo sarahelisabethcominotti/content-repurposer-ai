@@ -11,13 +11,13 @@ export default function Home() {
     <link rel="icon" href="/favicon.ico" />
       <title>CRAI - Generator</title>
     </head>
-    <body>
+    
     <Analytics debug={true} />
 
     <SessionProvider>
     <Generator/>
     </SessionProvider>
-    </body>
+    
     </>
   );
 }

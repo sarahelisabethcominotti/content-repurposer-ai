@@ -28,7 +28,7 @@ export default function TranscriptTab({ input, setInput, platform, setPlatform, 
         <button
           onClick={generateContent}
           disabled={loading || !input.trim()}
-          className="mt-6 w-full bg-green-300 text-white py-3 rounded-xl font-medium hover:bg-black transition-all disabled:opacity-50"
+          className="mt-6 w-full bg-green-300 text-black hover:text-white py-3 rounded-xl font-medium hover:bg-black transition-all disabled:opacity-50"
         >
           {loading ? "Generating..." : "Generate Content"}
         </button>
