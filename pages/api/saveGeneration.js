@@ -15,20 +15,31 @@ export default async function handler(req, res) {
 
   const { input, output, platform } = req.body
   const userEmail = session.user.email
+  const { data: user, error: userError } = await supabase
+  .from('users')
+  .select('id')
+  .eq('email', userEmail)
+  .single()
 
-  const { error } = await supabase.from('generations').insert([
-    {
-      user_email: userEmail,
-      input,
-      output,
-      platform,
-    },
-  ])
+if (userError || !user) {
+  console.error('Error fetching user:', userError)
+  return res.status(500).json({ error: 'Failed to find user' })
+}
 
-  if (error) {
-    console.error('Supabase insert error:', error)
-    return res.status(500).json({ error: 'Failed to save generation' })
-  }
+const { error: generationError } = await supabase.from('generations').insert([
+  {
+    user_id: user.id,
+    input,
+    output,
+    platform,
+  },
+])
+
+if (generationError) {
+  console.error('Supabase insert error:', generationError)
+  return res.status(500).json({ error: 'Failed to save generation' })
+}
+
 
   res.status(200).json({ success: true })
 }

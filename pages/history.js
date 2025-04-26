@@ -5,7 +5,55 @@ import "../app/globals.css";
 import Navigation from "@/public/components/Navigation";
 import { SessionProvider } from "next-auth/react";
 
-// import { supabase } from "../utils/supabaseClient";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+)
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
+    };
+  }
+
+  const userEmail = session.user.email;
+
+  const { data: user, error: userError } = await supabase
+  .from('users')
+  .select('id')
+  .eq('email', userEmail)
+  .single()
+
+if (userError || !user) {
+  console.error('Error fetching user:', userError)
+  return res.status(500).json({ error: 'Failed to find user' })
+}
+
+const userId = user.id;
+
+
+  const { data: generations, error } = await supabase
+    .from("generations")
+    .select("*")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Fetch error:", error);
+  }
+
+  return {
+    
+    props: { generations: generations || [] },
+  };
+}
 
 export default function History({ generations }) {
   
@@ -39,37 +87,4 @@ export default function History({ generations }) {
     </div>
     </SessionProvider>
   );
-}
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-)
-
-export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
-      },
-    };
-  }
-
-  const { data: generations, error } = await supabase
-    .from("generations")
-    .select("*")
-    .eq("user_email", session.user.email)
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error("Fetch error:", error);
-  }
-
-  return {
-    
-    props: { generations: generations || [] },
-  };
 }
