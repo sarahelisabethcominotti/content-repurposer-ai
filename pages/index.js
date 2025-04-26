@@ -16,7 +16,13 @@ export default function LandingPage() {
     }
   }
   return (
+    <>
+     <head>
+     <link rel="icon" href="/favicon.ico" />
+      <title>Content Repurposer AI</title>
+    </head>
     
+    <body>
     <div className="min-h-screen bg-white flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,green_100%)]">
       <header className="w-full py-6 px-8 flex justify-between items-center shadow-sm">
         <h1 className="text-xl font-bold text-green-600">Content Repurposer AI</h1>
@@ -50,6 +56,8 @@ export default function LandingPage() {
         © {new Date().getFullYear()} Sarah Elisabeth Cominotti. All rights reserved.
       </footer>
     </div>
+    </body>
+    </>
   );
 }
 

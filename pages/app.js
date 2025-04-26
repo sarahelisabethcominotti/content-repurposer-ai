@@ -6,11 +6,18 @@ export default function Home() {
 
 
   return (
-    <><Analytics debug={true} />
+    <>
+    <head>
+    <link rel="icon" href="/favicon.ico" />
+      <title>CRAI - Generator</title>
+    </head>
+    <body>
+    <Analytics debug={true} />
 
     <SessionProvider>
     <Generator/>
     </SessionProvider>
+    </body>
     </>
   );
 }

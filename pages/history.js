@@ -58,6 +58,14 @@ const userId = user.id;
 export default function History({ generations }) {
   
   return (
+    <>
+    <head>
+    <link rel="icon" href="/favicon.ico" />
+    <title>CRAI - History</title>
+    </head>
+    <body>
+
+    
     <SessionProvider>
     <div className="min-h-screen bg-gray-100 py-8 px-4">
       <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md">
@@ -86,5 +94,8 @@ export default function History({ generations }) {
     </div>
     </div>
     </SessionProvider>
+
+    </body>
+    </>
   );
 }
